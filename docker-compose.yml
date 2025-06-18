@@ -11,6 +11,5 @@ services:
       - ./modules:/app/modules
       - ./error_logs.txt:/app/error_logs.txt
       - ./modules.xlsx:/app/modules.xlsx
-    environment:
-      - JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-    # command: ["python", "update_modules.py"]
+    tty: true
+    stdin_open: true
