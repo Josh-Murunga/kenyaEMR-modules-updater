@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  modules-updater:
+    name: kenyaemr-modules-updater
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./repos:/app/repos
+      - ./modules:/app/modules
+      - ./error_logs.txt:/app/error_logs.txt
+      - ./modules.xlsx:/app/modules.xlsx
+    environment:
+      - JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+    # command: ["python", "update_modules.py"]

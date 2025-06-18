@@ -39,7 +39,10 @@ for idx, row in tqdm(list(df.iterrows()), total=len(df), desc="Processing module
             subprocess.run(['tar', '-xzf', output_file, '-C', 'repos'], check=True)
 
             # Identify extracted folder
-            extracted_folder = next(Path('repos').glob(f'*{tag}'))
+            all_folders = set(p for p in Path('repos').iterdir() if p.is_dir())
+            module_name = modules.strip()
+            matching_dirs = [d for d in all_folders if module_name in d.name]
+            extracted_folder = matching_dirs[0]
             os.chdir(extracted_folder)
 
         elif branch and not tag:
