@@ -9,8 +9,14 @@ from tqdm import tqdm  # Add tqdm for progress bar
 # Recreate 'repos' and 'modules' directories
 for d in ['repos', 'modules']:
     if os.path.exists(d):
-        shutil.rmtree(d)
-    os.makedirs(d, exist_ok=True)
+        for item in os.listdir(d):
+            item_path = os.path.join(d, item)
+            if os.path.isdir(item_path):
+                shutil.rmtree(item_path)
+            else:
+                os.remove(item_path)
+    else:
+        os.makedirs(d, exist_ok=True)
 
 # Load the Excel file
 df = pd.read_excel('modules.xlsx')
