@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   modules-updater:
-    name: kenyaemr-modules-updater
+    container_name: kenyaemr-modules-updater
     build:
       context: .
       dockerfile: Dockerfile
